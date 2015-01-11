@@ -1,2 +1,7 @@
 # imagine
-Library to resize, crop and upload images on web applications.
+
+Imagine is a library to resize, crop and upload images on web applications. The list bellow enumerate some situations where **imagine** is applicable:
+
+* User avatar edition;
+* Crop image to submit on web applications;
+* etc.
