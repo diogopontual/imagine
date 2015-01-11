@@ -1,0 +1,13 @@
+{
+	"name": "imagine",
+	"version": "0.0.1",
+	"description": "Library to resize, crop and upload images on web applications",
+	"url": "https://github.com/paralelo15/imagine",
+	"output": "imagine",
+	"authors": [
+    		"diogopontual <diogo@paralelo15.com.br>"
+  	],
+	"main": [
+		"src/imagine.js"
+	]
+}

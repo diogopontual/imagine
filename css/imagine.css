@@ -1,0 +1,32 @@
+div.dc-slider{
+    display: block;
+    width: 300px;
+    height:16px;
+    background-color: #88A;
+    border: 1px solid #999;
+}
+div.dc-slider-button{
+    display: block;
+    position: relative;
+    left: 0px;
+    top: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: #333;
+
+}
+canvas.dc-canvas{
+    background-color: #ddd;
+    border: 1px solid #999;
+    display: block;
+    color: #999;
+    font: Helvetica;
+    font-family: Helvetica;
+    font-weight: bolder;
+    text-align: center;
+}
+canvas.cd-canvas.hover{
+    background-color: #dfd;
+
+}
