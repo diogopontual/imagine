@@ -87,9 +87,9 @@ BrowserUtils = {
  * Statefull objects they configura and manipulate html canvas elements,
  * to receive (with drop), resize, crop and post images.
  *
- *  To construct an ImageEditor one should do: var imgEditor = ImageEditor(canvasElement);
+ *  To construct an imagine instance one should do: var imgEditor = Imagine(canvasElement);
  */
-var ImageEditor = function() {
+var Imagine = function() {
     var STATE_IDLE = 0,
         STATE_POSITIONING = 1;
     var origin = {

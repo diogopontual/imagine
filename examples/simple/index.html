@@ -4,10 +4,85 @@
     <meta charset="UTF-8">
     <title>Imagine Simple Example</title>
     <link rel="stylesheet" type="text/css" href="../../css/imagine.css">
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        div.half {
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
+
+        div.half:first-child {
+            background-color: #f4f4f4;
+        }
+
+        div#description {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #666;
+            font-size: large;
+            margin-bottom: 12px;
+            margin-top: 12px;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        canvas {
+            margin: 0 auto;
+            display: block;
+        }
+
+        img {
+            margin: 0 auto;
+            display: block;
+            top: -150px;
+        }
+    </style>
 </head>
 <body>
+<div class="half">
+    <div id="description">
+        <h1>Description</h1>
 
-    <script src="../../src/imagine.min.js"></script>
-   <!-- <script src="../../dist/imagine.min.js"></script> -->
+        <p>Here we simply create a canvas, and instantiate Imagine.</p>
+
+        <h1>Use</h1>
+        <ol>
+            <li>Drag any image from your system and drop over the gray canvas;</li>
+            <li>Use your mouse wheel to resize the image;</li>
+            <li>Click and drag the image to reposition it;</li>
+            <li>Click on generate button to see the output;</li>
+        </ol>
+        <h1>Explanation</h1>
+    </div>
+</div>
+<div id="example">
+    <canvas width="300" height="300" id="editor" style="background-color: #CCC"
+            placeholder="drag an image and drop here"></canvas>
+    <button id="btn-generate">Generate</button>
+    <img id="img-output"/>
+</div>
+<script src="../../src/imagine.js"></script>
+<!-- <script src="../../dist/imagine.min.js"></script> -->
+<script>
+    var img = new Imagine('editor');
+    document.getElementById('btn-generate').onclick = function () {
+        document.getElementById('img-output').src = img.getOutput();
+    };
+</script>
 </body>
 </html>

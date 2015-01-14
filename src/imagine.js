@@ -414,7 +414,6 @@ var Imagine = function() {
         getCurrentFactor: getCurrentFactor,
         getScale: getScale,
         sendOutput: sendOutput,
-        sendInput: sendInput,
-
+        sendInput: sendInput
     };
 };
