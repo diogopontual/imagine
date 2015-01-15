@@ -26,5 +26,11 @@ height | height| 0 | The height of the canvas element
 placeholder | placeholder |  | The text that is printed on the canvas when it does not have image
 windowWidth | data-window-width | width | The width of a rectangle smaller or equals to the canvas element, that will represent the crop area.
 windowHeight | data-window-height | height | The height of a rectangle smaller or equals to the canvas element, that will represent the crop area.
+scaleX | data-scale-x | 1 | The factor that will be applied to the output;
+scaleY | data-scale-y | 1 | The factor that will be applied to the output;
+backgroundColor | data-background-color | - | The background of the canvas element. Can be defined by css.
+outputFormat | data-output-format | jpeg | The format of the output. The supported values are: jpeg and png
+font | data-font | 20px Georgia | The font that will be used to print placeholder. Can be defined by css.
+lineHeight | data-line-height | 20 | The height of each line on the placeholder. Can be defined by css.
 
 
