@@ -21,5 +21,10 @@ where:
 ### Properties
 JS Property   | DOM Attribute | Default Value | Description
 ------------- | --------------|---------------|------------
-width  | width  | 0               | The width of the canvas element
-height  | height  | 0               | The height of the canvas element
+width | width | 0 | The width of the canvas element
+height | height| 0 | The height of the canvas element
+placeholder | placeholder |  | The text that is printed on the canvas when it does not have image
+windowWidth | data-window-width | width | The width of a rectangle smaller or equals to the canvas element, that will represent the crop area.
+windowHeight | data-window-height | height | The height of a rectangle smaller or equals to the canvas element, that will represent the crop area.
+
+
