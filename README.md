@@ -19,6 +19,9 @@ where:
 * string: a string containing al configurations options;
 
 ### Properties
+
+The Imagine configuration can be done by element attributes or by properties on config object. The config object has precedence.
+
 JS Property   | DOM Attribute | Default Value | Description
 ------------- | --------------|---------------|------------
 width | width | 0 | The width of the canvas element
