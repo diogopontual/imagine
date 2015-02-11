@@ -19,7 +19,7 @@ BrowserUtils = {
      * Returns the name of browser
      * @return string The name of the browser: chrome, firefox...
      */
-    getBrowserName: function() {
+    getBrowserName: function () {
         var userAgent = navigator.userAgent.toLowerCase();
         if (userAgent.indexOf('chrome') > 0) {
             return BrowserUtils.browsers.chrome;
@@ -33,7 +33,7 @@ BrowserUtils = {
      * @param  string dataURI
      * @return Blob
      */
-    dataURItoBlob: function(dataURI) {
+    dataURItoBlob: function (dataURI) {
         var str = atob(dataURI.split(',')[1]);
         var array = [];
         for (var i = 0; i < str.length; i++) {
@@ -41,7 +41,7 @@ BrowserUtils = {
         }
         return new Blob([new Uint8Array(array)]);
     },
-    writeText: function(context, text, margin,lineHeight) {
+    writeText: function (context, text, margin, lineHeight) {
         var width = context.canvas.width;
         var height = context.canvas.height;
         var maxWidth = width - margin;
@@ -52,7 +52,7 @@ BrowserUtils = {
         var x;
         for (var n = 0; n < words.length; n++) {
             testLine = line + words[n] + ' ';
-            if(metrics)
+            if (metrics)
                 testWidth = metrics.width;
             metrics = context.measureText(testLine);
             if (metrics.width > maxWidth && n > 0) {
@@ -88,7 +88,7 @@ BrowserUtils = {
  *
  *  To construct an imagine instance one should do: var imgEditor = Imagine(canvasElement);
  */
-var Imagine = function() {
+var Imagine = function () {
     var STATE_IDLE = 0,
         STATE_POSITIONING = 1;
     var origin = {
@@ -114,11 +114,11 @@ var Imagine = function() {
         font,
         placeholder,
         lineHeight;
-    var addClass = function(clazz) {
+    var addClass = function (clazz) {
         if (element.className.indexOf('hover') < 0)
             element.className = element.className + " " + clazz;
     };
-    var removeClass = function(clazz) {
+    var removeClass = function (clazz) {
         clazz = clazz.trim();
         var classes = element.className.split(" ");
         var nClasses = "";
@@ -129,9 +129,9 @@ var Imagine = function() {
         }
         element.className = nClasses;
     };
-    var draw = function(file) {
+    var draw = function (file) {
         var reader = new FileReader();
-        reader.onload = function(loadedFile) {
+        reader.onload = function (loadedFile) {
             input = new Image();
             var context = element.getContext('2d');
             input.src = loadedFile.target.result;
@@ -145,7 +145,7 @@ var Imagine = function() {
         };
         reader.readAsDataURL(file);
     };
-    var redraw = function() {
+    var redraw = function () {
         if (input !== null) {
             var context = this.getContext('2d');
             var newWidth = input.width * factor;
@@ -157,7 +157,7 @@ var Imagine = function() {
             drawFrame(context, this);
         }
     };
-    var drawFrame = function(context, canvas) {
+    var drawFrame = function (context, canvas) {
         context.globalAlpha = 0.5;
         var rectWidth = parseInt((canvas.width - windowWidth) / 2);
         var rectHeight = parseInt((canvas.height - windowHeight) / 2);
@@ -167,7 +167,7 @@ var Imagine = function() {
         context.fillRect(canvas.width - rectWidth, rectHeight, rectWidth, canvas.height - (rectHeight * 2));
         context.globalAlpha = 1;
     };
-    var getInputSize = function() {
+    var getInputSize = function () {
         if (!input)
             return null;
         return {
@@ -175,7 +175,7 @@ var Imagine = function() {
             height: input.height,
         };
     };
-    var getCurrentSize = function() {
+    var getCurrentSize = function () {
         if (!input)
             return null;
         return {
@@ -183,28 +183,28 @@ var Imagine = function() {
             height: parseInt(input.height * factor)
         };
     };
-    var getOutputSize = function() {
+    var getOutputSize = function () {
         var r = {};
         r.width = scaleX ? windowWidth * scaleX : windowWidth;
         r.height = scaleY ? windowHeight * scaleY : windowHeight;
         return r;
     };
-    var getScale = function() {
+    var getScale = function () {
         return {
             x: scaleX,
             y: scaleY
         };
     };
-    var getWindowSize = function() {
+    var getWindowSize = function () {
         return {
             width: windowWidth,
             height: windowHeight
         };
     };
-    var getCurrentFactor = function() {
+    var getCurrentFactor = function () {
         return factor;
     };
-    var getCurrentOffset = function() {
+    var getCurrentOffset = function () {
         if (!input)
             return;
         var r = {};
@@ -215,10 +215,17 @@ var Imagine = function() {
         r.y = parseInt(((origin.y - windowTop) * -1) + ((inputSize.height * factor - inputSize.height) / 2));
         return r;
     };
+    var getData = function () {
+        var obj = this.getCurrentOffset();
+        obj.factor = factor;
+        obj.windowWidth = windowWidth;
+        obj.windowHeight = windowHeight;
+        return obj;
+    };
     /*
      *	Read and return results.
      */
-    var getOutput = function(quality) {
+    var getOutput = function (quality) {
         //1 - Descobrir qual parte de input está contigo em window;
         //1.1 - Descobrir os cantos que coincidem com window em current;
         //1.2 - Calcular estes cantos em input, dividindo largura e altura por factor;
@@ -252,7 +259,7 @@ var Imagine = function() {
         dataUrl = tmpCanvas.toDataURL('image/' + outputFormat, quality);
         return dataUrl;
     };
-    var sendOutput = function(url, quality, callback) {
+    var sendOutput = function (url, quality, callback) {
         if (!quality)
             quality = 1;
         var dataURL = getOutput(quality);
@@ -260,7 +267,7 @@ var Imagine = function() {
         var fd = new FormData();
         fd.append("file", blob);
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     callback(null);
@@ -272,11 +279,11 @@ var Imagine = function() {
         xhr.open('POST', url, true);
         xhr.send(fd);
     };
-    var sendInput = function(url, callback) {
+    var sendInput = function (url, callback) {
         var fd = new FormData();
         fd.append("file", input);
         var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     callback(null);
@@ -289,7 +296,7 @@ var Imagine = function() {
         xhr.send(fd);
     };
 
-    var writePlaceholder = function() {
+    var writePlaceholder = function () {
         if (input)
             return;
         if (!placeholder)
@@ -297,10 +304,10 @@ var Imagine = function() {
         var context = element.getContext("2d");
         context.font = font;
         context.fillStyle = color;
-        BrowserUtils.writeText(context, placeholder, 10,lineHeight);
+        BrowserUtils.writeText(context, placeholder, 10, lineHeight);
 
     };
-    var mouseMoveHandler = function(evt) {
+    var mouseMoveHandler = function (evt) {
         var event;
         if (state == STATE_POSITIONING) {
             var distance = {};
@@ -313,7 +320,7 @@ var Imagine = function() {
             element.dispatchEvent(event);
         }
     };
-    var canvasMouseDownHandler = function(evt) {
+    var canvasMouseDownHandler = function (evt) {
         if (state == STATE_IDLE) {
             cursorPositionOnDragStart.x = evt.clientX;
             cursorPositionOnDragStart.y = evt.clientY;
@@ -324,14 +331,14 @@ var Imagine = function() {
             state = STATE_POSITIONING;
         }
     };
-    var canvasMouseUpHandler = function() {
+    var canvasMouseUpHandler = function () {
         if (state == STATE_POSITIONING) {
             window.removeEventListener('mousemove', mouseMoveHandler);
             window.removeEventListener('mouseup', canvasMouseUpHandler);
             state = STATE_IDLE;
         }
     };
-    var mouseWheelHandler = function(evt) {
+    var mouseWheelHandler = function (evt) {
         var delta = Math.max(-1, Math.min(evt.wheelDelta || -evt.detail));
         if (delta > 0) delta = 1;
         factor += (delta * 3 / 100);
@@ -339,7 +346,7 @@ var Imagine = function() {
         event.initEvent('imageScale', true, false);
         element.dispatchEvent(event);
     };
-    var init = function() {
+    var init = function () {
         if (!element) {
             throw "The element must be provided";
         }
@@ -370,14 +377,14 @@ var Imagine = function() {
             element.style.backgroundColor = backgroundColor;
         }
         writePlaceholder();
-        element.ondragover = function() {
+        element.ondragover = function () {
             addClass('hover');
             return false;
         };
-        element.ondragleave = function() {
+        element.ondragleave = function () {
             removeClass('hover');
         };
-        element.ondrop = function(e) {
+        element.ondrop = function (e) {
             e.preventDefault();
             removeClass('hover');
             if (e.dataTransfer.files)
@@ -414,6 +421,8 @@ var Imagine = function() {
         getCurrentFactor: getCurrentFactor,
         getScale: getScale,
         sendOutput: sendOutput,
-        sendInput: sendInput
+        sendInput: sendInput,
+        getData: getData,
+        draw: draw
     };
 };
