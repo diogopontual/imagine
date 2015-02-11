@@ -1,7 +1,5 @@
 //Author: Diogo Pontual (diogo@paralelo15.com.br)
 //Date:  09-11-2014
-
-
 /**
  * Some utilities methods,
  * @type {Object}
@@ -83,7 +81,7 @@ BrowserUtils = {
     }
 };
 /**
- * Statefull objects they configura and manipulate html canvas elements,
+ * Statefull objects that configure and manipulate html canvas elements,
  * to receive (with drop), resize, crop and post images.
  *
  *  To construct an imagine instance one should do: var imgEditor = Imagine(canvasElement);
